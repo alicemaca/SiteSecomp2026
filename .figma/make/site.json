@@ -1,0 +1,10 @@
+{
+  "description": "Discover Secomp 2026, a free event offering mini courses and talks on computing for high school and university students, featuring a modern, user-friendly design.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
