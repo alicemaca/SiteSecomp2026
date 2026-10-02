@@ -1,4 +1,9 @@
 import { useState } from "react";
+import logoImg from './assets/logo_secomp_2026.svg';
+import heroImage from './assets/background.png';
+import fundo1 from './assets/fundo_1.png';
+import fundo2 from './assets/fundo_2.png';
+
 
 type IconName =
   | "arrow"
@@ -111,11 +116,11 @@ function Icon({ name, size = 20 }: { name: IconName; size?: number }) {
 function Logo() {
   return (
     <a className="logo" href="#inicio" aria-label="Secomp — início">
-      <span className="logo-mark" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-      </span>
+      <img 
+        src={logoImg}
+        alt="Logo Secomp" 
+        className="logo-image" 
+      />
       <span>secomp</span>
     </a>
   );
@@ -126,33 +131,37 @@ const schedule = {
     {
       date: "13",
       weekday: "Terça",
+      image: fundo1,
       items: [
-        { time: "14:00", title: "Primeiros passos com inteligência artificial", tag: "Iniciante" },
-        { time: "16:00", title: "Criando experiências para a web", tag: "Prática" },
+        { time: "13:00 - 14:50", title: "Introdução a programação", tag: "Iniciante" },
+        { time: "15:10 - 17:00", title: "introdução a MCP e LLM's", tag: "Prática" },
       ],
     },
     {
       date: "14",
       weekday: "Quarta",
+      image: fundo2,
       items: [
-        { time: "14:00", title: "Introdução à ciência de dados", tag: "Iniciante" },
-        { time: "16:00", title: "Prototipação de produtos digitais", tag: "Prática" },
+        { time: "13:00 - 14:50", title: "Como usar IA do jeito certo no desenvolvimento de software?", tag: "Iniciante" },
+        { time: "15:10 - 17:00", title: "introdução ao desenvolvimento de jogos", tag: "Prática" },
       ],
     },
     {
       date: "15",
       weekday: "Quinta",
+      image: fundo1,
       items: [
-        { time: "14:00", title: "Programação criativa com Python", tag: "Iniciante" },
-        { time: "16:00", title: "Segurança digital no dia a dia", tag: "Prática" },
+        { time: "13:00 - 14:50", title: "Minicurso AWS", tag: "Iniciante" },
+        { time: "15:10 - 17:00", title: "Fluxos de trabalho experimentais na concepção de interfaces do usuário", tag: "Prática" },
       ],
     },
     {
       date: "16",
       weekday: "Sexta",
+      image: fundo2,
       items: [
-        { time: "14:00", title: "Desenvolvendo seu primeiro jogo", tag: "Iniciante" },
-        { time: "16:00", title: "Git e colaboração em projetos", tag: "Prática" },
+        { time: "13:00 - 14:50", title: "Introdução ao Arduino", tag: "Iniciante" },
+        { time: "15:10 - 17:00", title: "Do Preciso Disso ao Deploy: Como uma Necessidade Vira Software", tag: "Prática" },
       ],
     },
   ],
@@ -160,6 +169,7 @@ const schedule = {
     {
       date: "13",
       weekday: "Terça",
+      image: fundo1,
       items: [
         { time: "19:00", title: "IA para além do hype", tag: "Online" },
         { time: "20:00", title: "Carreiras que movem a tecnologia", tag: "Online" },
@@ -168,6 +178,7 @@ const schedule = {
     {
       date: "14",
       weekday: "Quarta",
+      image: fundo2,
       items: [
         { time: "19:00", title: "Computação, sociedade e futuro", tag: "Online" },
         { time: "20:00", title: "Como começar na pesquisa", tag: "Online" },
@@ -176,6 +187,7 @@ const schedule = {
     {
       date: "15",
       weekday: "Quinta",
+      image: fundo1,
       items: [
         { time: "19:00", title: "Tecnologia e impacto social", tag: "Online" },
         { time: "20:00", title: "Design também é computação", tag: "Online" },
@@ -184,6 +196,7 @@ const schedule = {
     {
       date: "16",
       weekday: "Sexta",
+      image: fundo2,
       items: [
         { time: "19:00", title: "O que a máquina aprende?", tag: "Online" },
         { time: "20:00", title: "Encerramento e próximos passos", tag: "Online" },
@@ -206,7 +219,7 @@ const faqs = [
     answer: (
       <>
         Escreva para <a href="mailto:secomp@cin.ufpe.br">secomp@cin.ufpe.br</a> ou mande uma mensagem no nosso{" "}
-        <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>.
+        <a href="https://www.instagram.com/secompufpe" target="_blank" rel="noreferrer">Instagram</a>.
       </>
     ),
   },
@@ -243,9 +256,13 @@ function App() {
           <nav className={menuOpen ? "nav-links open" : "nav-links"} aria-label="Navegação principal">
             <a href="#programacao" onClick={() => setMenuOpen(false)}>Programação</a>
             <a href="#sobre" onClick={() => setMenuOpen(false)}>Sobre o evento</a>
-            <a className="nav-cta" href="#inscricao" onClick={() => setMenuOpen(false)}>
+            <a 
+              className="nav-cta" 
+              href="#inscricao" 
+              onClick={() => setMenuOpen(false)}
+            >
               Inscreva-se
-            </a>
+          </a>
           </nav>
           <button
             className="menu-button"
@@ -260,17 +277,27 @@ function App() {
       </header>
 
       <main>
-        <section className="hero" id="inicio">
-          <div className="hero-pattern" aria-hidden="true">
-            <span className="orb orb-one" />
-            <span className="orb orb-two" />
-            <span className="grid-plane" />
-          </div>
-          <div className="container hero-grid">
+        <section className="hero" id="inicio" style={{ position: 'relative', overflow: 'hidden' }}>
+          <div className="hero-pattern" aria-hidden="true"
+            style={{
+              backgroundImage: `url(${heroImage})`, /* 2. Use a variável do import aqui */
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              position: 'absolute',
+              inset: 0,
+              zIndex: 0,
+              opacity: 0.9
+            }} 
+          />
+          
+          <div className="container hero-grid" style={{ position: 'relative', zIndex: 1 }}>
             <div className="hero-copy">
               <div className="event-pill"><span />13–16 out · gratuito</div>
               <h1>Secomp <span>2026</span></h1>
-              <p className="hero-tagline">A máquina aprende,<br />nós aprendemos <em>o quê?</em></p>
+              <p className="hero-tagline text-glow-bg">
+                A máquina aprende,<br />nós aprendemos <em>o quê?</em>
+              </p>
               <div className="hero-actions">
                 <a className="button button-primary" href="#inscricao">
                   Inscreva-se <Icon name="arrow" />
@@ -361,9 +388,22 @@ function App() {
             <div className="schedule-grid" role="tabpanel">
               {schedule[scheduleType].map((day) => (
                 <article className="day-card" key={day.date}>
-                  <header>
-                    <span className="day-number">{day.date}</span>
-                    <div><strong>{day.weekday}</strong><span>outubro</span></div>
+                  <header
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(${day.image})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      backgroundRepeat: 'no-repeat'
+                    }}
+                  >
+                  <span className="day-number" style={{ color: '#ffffff' }}>
+                    {day.date}
+                  </span>
+    
+                  <div>
+                    <strong style={{ color: '#ffffff' }}>{day.weekday}</strong>
+                    <span style={{ color: 'rgba(255, 255, 255, 0.8)' }}>outubro</span>
+                  </div>
                   </header>
                   <div className="day-items">
                     {day.items.map((item) => (
@@ -377,7 +417,6 @@ function App() {
                 </article>
               ))}
             </div>
-            <p className="schedule-note">Programação sujeita a alterações. Em breve, divulgaremos participantes e detalhes de cada atividade.</p>
           </div>
         </section>
 
@@ -460,10 +499,10 @@ function App() {
           <div className="container">
             <div className="cta-panel">
               <div className="cta-grid" aria-hidden="true" />
-              <span className="eyebrow light">Inscrições abertas em breve</span>
+              <span className="eyebrow light">Inscrições abertas</span>
               <h2>Pronto para aprender mais sobre computação?</h2>
               <p>Quatro dias de troca, prática e novas ideias. Tudo gratuito.</p>
-              <a className="button button-accent" href="mailto:secomp@cin.ufpe.br?subject=Quero participar da Secomp 2026">
+              <a className="button button-accent" href="https://www.sympla.com.br/evento/semana-da-computacao-ufpe-2026/3597214" target="_blank" rel="noreferrer">
                 Inscreva-se agora <Icon name="arrow" />
               </a>
             </div>
@@ -480,7 +519,7 @@ function App() {
           <div className="footer-links">
             <div><span>Realização</span><a href="https://pet.cin.ufpe.br" target="_blank" rel="noreferrer">PET Informática</a><a href="https://portal.cin.ufpe.br" target="_blank" rel="noreferrer">CIn / UFPE</a></div>
             <div><span>Navegue</span><a href="#programacao">Programação</a><a href="#localizacao">Localização</a><a href="#sobre">Sobre</a></div>
-            <div><span>Fale com a gente</span><a href="mailto:secomp@cin.ufpe.br"><Icon name="mail" size={17} />secomp@cin.ufpe.br</a><a href="https://instagram.com" target="_blank" rel="noreferrer"><Icon name="instagram" size={17} />Instagram</a></div>
+            <div><span>Fale com a gente</span><a href="mailto:secomp@cin.ufpe.br"><Icon name="mail" size={17} />secomp@cin.ufpe.br</a><a href="https://www.instagram.com/secompufpe" target="_blank" rel="noreferrer"><Icon name="instagram" size={17} />Instagram</a></div>
           </div>
         </div>
         <div className="container footer-bottom"><span>© 2026 Secomp</span><span>Feito com curiosidade no Recife.</span></div>
